@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/twilio/twilio-ruby.png?branch=master)](https://travis-ci.org/twilio/twilio-ruby)
 [![Gem Version](https://badge.fury.io/rb/twilio-ruby.png)](http://badge.fury.io/rb/twilio-ruby)
 
@@ -179,3 +180,7 @@ The [upgrade guide][upgrade] is available in the [twilio-ruby github wiki][wiki]
 [documentation]:http://twilio-ruby.readthedocs.org/en/latest
 [upgrade]:https://github.com/twilio/twilio-ruby/wiki/UpgradeGuide
 [wiki]:https://github.com/twilio/twilio-ruby/wiki
+=======
+twilio-dialer-rep
+=================
+>>>>>>> 8acb7e32618b83ff9d7a0e333abadc5875d72b19
