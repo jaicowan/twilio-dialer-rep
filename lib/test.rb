@@ -11,13 +11,11 @@ client = Twilio::REST::Client.new account_sid, auth_token
  
 from = "+16466795828" # Your Twilio number
  
-friends = {
+prospects = {
 "+6584286950" => "ProspectXYZ"
-#,"+14155557775" => "Boots",
-#"+14155551234" => "Virgil"
 }
 get '/send' do
-	friends.each do |key, value|
+	prospects.each do |key, value|
 	client.account.messages.create(
 	:from => from,
 	:to => key,
@@ -28,7 +26,7 @@ get '/send' do
 end
 get '/sms-quickstart' do
     twiml = Twilio::TwiML::Response.new do |r|
-		if  params[:Body] == "accept"
+		if  params[:Body] == "Accept"
 			(r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
 			:from => '+16466795828',   # From your Twilio number
@@ -38,7 +36,7 @@ get '/sms-quickstart' do
 			)
 			)
 		else
-		# Do not call customer
+		# Do not call customer, send message body and subscriber CLID to invalid response bucket
 		end
 	end
 	twiml.text
