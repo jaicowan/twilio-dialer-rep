@@ -23,18 +23,19 @@ friends = {
 #,"+14155557775" => "Boots",
 #"+14155551234" => "Virgil"
 }
-friends.each do |key, value|
-  client.account.messages.create(
-    :from => from,
-    :to => key,
-    :body => "Hey #{value}, Monkey party at 6PM. Bring Bananas!"
-  ) 
-  puts "Sent message to #{value}"
+get '/send' do
+	friends.each do |key, value|
+	client.account.messages.create(
+	:from => from,
+	:to => key,
+	:body => "Hey #{value}, Monkey party at 6PM. Bring Bananas!"
+	) 
+	puts "Sent message to #{value}"
+	end
 end
- 
 get '/sms-quickstart' do
   twiml = Twilio::TwiML::Response.new do |r|
-    r.Message "Hey Monkey. Thanks for the message!"
+	r.Message "Hey Monkey. Thanks for the message!"
   end
   twiml.text
 end
