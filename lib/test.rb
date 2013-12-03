@@ -29,7 +29,7 @@ end
 get '/sms-quickstart' do
     twiml = Twilio::TwiML::Response.new do |r|
 		r.Message "Hey Monkey. Thanks for the message!"
-		@call = @client.account.calls.create(
+		call = client.account.calls.create(
 		:from => '+16466795828',   # From your Twilio number
 		:to => '+61299598017',     # To any number
 		# Fetch instructions from this URL when the call connects
