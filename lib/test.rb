@@ -12,7 +12,7 @@ client = Twilio::REST::Client.new account_sid, auth_token
 from = "+16466795828" # Your Twilio number
  
 friends = {
-"+6584286950" => "SG Mobile"
+"+6584286950" => "ProspectXYZ"
 #,"+14155557775" => "Boots",
 #"+14155551234" => "Virgil"
 }
@@ -21,15 +21,15 @@ get '/send' do
 	client.account.messages.create(
 	:from => from,
 	:to => key,
-	:body => "Hey #{value}, Monkey party at 6PM. Bring Bananas!"
+	:body => "Hi #{value}, we would like to tell you about our promotional offer on widgets. Please reply 'accept' to have our consultant call you."
 	) 
 	"Sent message to #{value}"
 	end
 end
 get '/sms-quickstart' do
     twiml = Twilio::TwiML::Response.new do |r|
-		if  params[:Body] == {"accept" | "Accept" | "A"}
-			(r.Message "Thanks for your response. Our agent will be calling you shortly."
+		if  params[:Body] == "accept"
+			(r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
 			:from => '+16466795828',   # From your Twilio number
 			:to => '+61299598017',     # To any number
