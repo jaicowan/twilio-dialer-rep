@@ -7,7 +7,7 @@ account_sid = 'AC49852d6f8f92a73cc6d9192ad5cd29e6'
 auth_token = '9a64bc17c6565c421cb0893b0ec99342'
  
 # set up a client to talk to the Twilio REST API
-@client = Twilio::REST::Client.new account_sid, auth_token
+client = Twilio::REST::Client.new account_sid, auth_token
  
 #@call = @client.account.calls.create(
 #  :from => '+16466795828',   # From your Twilio number
@@ -19,8 +19,8 @@ auth_token = '9a64bc17c6565c421cb0893b0ec99342'
 from = "+16466795828" # Your Twilio number
  
 friends = {
-"+6584286950" => "SG Mobile",
-#"+14155557775" => "Boots",
+"+6584286950" => "SG Mobile"
+#,"+14155557775" => "Boots",
 #"+14155551234" => "Virgil"
 }
 friends.each do |key, value|
