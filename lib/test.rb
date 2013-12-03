@@ -9,13 +9,6 @@ auth_token = '9a64bc17c6565c421cb0893b0ec99342'
 # set up a client to talk to the Twilio REST API
 client = Twilio::REST::Client.new account_sid, auth_token
  
-#@call = @client.account.calls.create(
-#  :from => '+16466795828',   # From your Twilio number
-#  :to => '+61299598017',     # To any number
-#  # Fetch instructions from this URL when the call connects
-#  :url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
-#)
- 
 from = "+16466795828" # Your Twilio number
  
 friends = {
@@ -34,8 +27,16 @@ get '/send' do
 	end
 end
 get '/sms-quickstart' do
-  twiml = Twilio::TwiML::Response.new do |r|
-	r.Message "Hey Monkey. Thanks for the message!"
-  end
-  twiml.text
+    twiml = Twilio::TwiML::Response.new do |r|
+		r.Message "Hey Monkey. Thanks for the message!"
+		@call = @client.account.calls.create(
+		:from => '+16466795828',   # From your Twilio number
+		:to => '+61299598017',     # To any number
+		# Fetch instructions from this URL when the call connects
+		:url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
+		)
+		
+	end
+	twiml.text
 end
+
