@@ -38,7 +38,7 @@ get '/sms-quickstart' do
 			)
 			)
 		else
-		# Do not call
+		# Do not call customer
 	end
 	twiml.text
 end
