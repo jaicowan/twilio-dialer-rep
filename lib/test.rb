@@ -28,14 +28,17 @@ get '/send' do
 end
 get '/sms-quickstart' do
     twiml = Twilio::TwiML::Response.new do |r|
-		r.Message "Hey Monkey. Thanks for the message!"
-		call = client.account.calls.create(
-		:from => '+16466795828',   # From your Twilio number
-		:to => '+61299598017',     # To any number
-		# Fetch instructions from this URL when the call connects
-		:url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
-		)
-		
+		if  params[:Body] == "accept"
+			(r.Message "Thanks for your response. Our agent will be calling you shortly."
+			call = client.account.calls.create(
+			:from => '+16466795828',   # From your Twilio number
+			:to => '+61299598017',     # To any number
+			# Fetch instructions from this URL when the call connects
+			:url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
+			)
+			)
+		else
+		# Do not call
 	end
 	twiml.text
 end
