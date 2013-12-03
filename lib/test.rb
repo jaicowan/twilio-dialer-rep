@@ -30,7 +30,7 @@ get '/send' do
 	:to => key,
 	:body => "Hey #{value}, Monkey party at 6PM. Bring Bananas!"
 	) 
-	puts "Sent message to #{value}"
+	"Sent message to #{value}"
 	end
 end
 get '/sms-quickstart' do
