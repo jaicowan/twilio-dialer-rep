@@ -28,7 +28,7 @@ get '/send' do
 end
 get '/sms-quickstart' do
     twiml = Twilio::TwiML::Response.new do |r|
-		if  params[:Body] == "accept"
+		if  params[:Body] == {"accept" | "Accept" | "A"}
 			(r.Message "Thanks for your response. Our agent will be calling you shortly."
 			call = client.account.calls.create(
 			:from => '+16466795828',   # From your Twilio number
