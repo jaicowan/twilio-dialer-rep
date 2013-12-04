@@ -2,7 +2,6 @@ require 'rubygems'
 require 'twilio-ruby'
 require 'sinatra'
 
-# put your own credentials here - from twilio.com/user/account
 account_sid = 'AC49852d6f8f92a73cc6d9192ad5cd29e6'
 auth_token = '9a64bc17c6565c421cb0893b0ec99342'
  
@@ -10,13 +9,6 @@ client = Twilio::REST::Client.new account_sid, auth_token
  
 from = "+16466795828" 
  
-get '/hello/:name' do
-  "Hello #{params[:name]}!"
-end 
- 
-prospects = {
-"+6584286950" => "ProspectXYZ"
-}
 get '/send_to' do
 	client.account.messages.create(
 	:from => from, 
@@ -29,7 +21,8 @@ end
 get '/sms-quickstart' do
     twiml = Twilio::TwiML::Response.new do |r|
 		if  params[:Body] == "Accept"
-			(r.Message "Thanks for your response. Our representative will be calling you shortly."
+			(
+			r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
 			:from => from,   
 			:to => params[:num], 
