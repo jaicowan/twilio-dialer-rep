@@ -10,12 +10,14 @@ client = Twilio::REST::Client.new account_sid, auth_token
 from = "+16466795828" 
  
 get '/send_to' do
+	num = params[:num]
+	name = params[:name]
 	client.account.messages.create(
 	:from => from, 
-	:to => {params[:num]},
-	:body => "Hi #{params[:name]}, we would like to tell you about our promotional offer on widgets. Please reply 'accept' to have our consultant call you."
+	:to => num,
+	:body => "Hi #{name}, we would like to tell you about our promotional offer on widgets. Please reply 'accept' to have our consultant call you."
 	) 
-	puts "Sent message to #{params[:name]}"
+	puts "Sent message to #{name}"
 end
 
 get '/sms-quickstart' do
@@ -25,7 +27,7 @@ get '/sms-quickstart' do
 			r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
 			:from => from,   
-			:to => {params[:num]}, 
+			:to => num, 
 			:url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
 			)
 			)
