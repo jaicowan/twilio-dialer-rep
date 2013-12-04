@@ -12,7 +12,7 @@ from = "+16466795828"
 get '/send_to' do
 	client.account.messages.create(
 	:from => from, 
-	:to => params[:num],
+	:to => {params[:num]},
 	:body => "Hi #{params[:name]}, we would like to tell you about our promotional offer on widgets. Please reply 'accept' to have our consultant call you."
 	) 
 	puts "Sent message to #{params[:name]}"
@@ -25,7 +25,7 @@ get '/sms-quickstart' do
 			r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
 			:from => from,   
-			:to => params[:num], 
+			:to => {params[:num]}, 
 			:url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
 			)
 			)
