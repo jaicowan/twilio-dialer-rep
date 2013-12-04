@@ -10,7 +10,7 @@ client = Twilio::REST::Client.new account_sid, auth_token
 from = "+16466795828" 
  
 get '/send_to' do
-	num = params[:num]
+	num = "+" + params[:num]
 	name = params[:name]
 	client.account.messages.create(
 	:from => from, 
