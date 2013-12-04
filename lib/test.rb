@@ -17,7 +17,7 @@ get '/send_to' do
 		:to => num,
 		:body => "Hi #{name}, we would like to tell you about our promotional offer on widgets. Please reply 'Accept' to have our consultant call you."
 	) 
-	puts "Sent message to #{name}"
+	"Sent message to #{name}"
 end
 
 get '/sms-response' do
