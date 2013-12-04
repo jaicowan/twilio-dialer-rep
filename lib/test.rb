@@ -16,8 +16,8 @@ get '/send_to' do
 	:body => "Hi #{params[:name]}, we would like to tell you about our promotional offer on widgets. Please reply 'accept' to have our consultant call you."
 	) 
 	puts "Sent message to #{params[:name]}"
-	end
 end
+
 get '/sms-quickstart' do
     twiml = Twilio::TwiML::Response.new do |r|
 		if  params[:Body] == "Accept"
