@@ -6,22 +6,24 @@ require 'sinatra'
 account_sid = 'AC49852d6f8f92a73cc6d9192ad5cd29e6'
 auth_token = '9a64bc17c6565c421cb0893b0ec99342'
  
-# set up a client to talk to the Twilio REST API
 client = Twilio::REST::Client.new account_sid, auth_token
  
-from = "+16466795828" # Your Twilio number
+from = "+16466795828" 
+ 
+get '/hello/:name' do
+  "Hello #{params[:name]}!"
+end 
  
 prospects = {
 "+6584286950" => "ProspectXYZ"
 }
-get '/send' do
-	prospects.each do |key, value|
+get '/send_to' do
 	client.account.messages.create(
-	:from => from,
-	:to => key,
-	:body => "Hi #{value}, we would like to tell you about our promotional offer on widgets. Please reply 'accept' to have our consultant call you."
+	:from => from, 
+	:to => params[:num],
+	:body => "Hi #{params[:name]}, we would like to tell you about our promotional offer on widgets. Please reply 'accept' to have our consultant call you."
 	) 
-	"Sent message to #{value}"
+	puts "Sent message to #{params[:name]}"
 	end
 end
 get '/sms-quickstart' do
@@ -29,9 +31,8 @@ get '/sms-quickstart' do
 		if  params[:Body] == "Accept"
 			(r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
-			:from => '+16466795828',   # From your Twilio number
-			:to => '+61299598017',     # To any number
-			# Fetch instructions from this URL when the call connects
+			:from => from,   
+			:to => params[:num], 
 			:url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
 			)
 			)
