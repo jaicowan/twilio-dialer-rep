@@ -22,12 +22,13 @@ end
 
 get '/sms-response' do
 	twiml = Twilio::TwiML::Response.new do |r|
+		num = params[:From]
 		if  params[:Body] == "Accept"
 			(
 			r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
 				:from => from,   
-				:to => "+61299598017", 
+				:to => num, 
 				:url => 'http://twimlets.com/forward?PhoneNumber=+14083313300&FailUrl=http://myapp.com/please-try-later.mp3'
 			)
 			)
