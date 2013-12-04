@@ -20,14 +20,14 @@ get '/send_to' do
 	puts "Sent message to #{name}"
 end
 
-get '/sms-quickstart' do
+get '/sms-response' do
     twiml = Twilio::TwiML::Response.new do |r|
 		if  params[:Body] == "Accept"
 			(
 			r.Message "Thanks for your response. Our representative will be calling you shortly."
 			call = client.account.calls.create(
 			:from => from,   
-			:to => num, 
+			:to => "+61299598017", 
 			:url => 'http://twimlets.com/forward?PhoneNumber=+61299598017&FailUrl=http://myapp.com/please-try-later.mp3'
 			)
 			)
