@@ -2,7 +2,7 @@ require 'rubygems'
 require 'twilio-ruby'
 require 'sinatra'
 
-account_sid = 'AC49852d6f8f92a73cc6d9192ad5cd29e6'
+account_sid = 
 auth_token = 
  
 client = Twilio::REST::Client.new account_sid, auth_token
